@@ -22,7 +22,7 @@ def get_data():
 try:
     dataframe = get_data()
     countries = streamlit.multiselect(
-        "Choose ", list(dataframe.index), ["Avocado", "Grapes"]
+        "Choose ", list(dataframe.index), ["130", "20"]
     )
     if not countries:
         streamlit.error("Please select at least one fruit.")
