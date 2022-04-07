@@ -22,7 +22,7 @@ def get_data():
 try:
     dataframe = get_data()
     countries = streamlit.multiselect(
-        "Choose fruits ", list(dataframe.index), ["Avocado", "Banana"]
+        "Choose fruits ", list(dataframe.index), ["Apple", "Banana"]
     )
     if not countries:
         streamlit.error("Please select at least one fruit.")
@@ -33,7 +33,7 @@ try:
 
         dataset = dataset.T.reset_index()
         dataset = pandas.melt(dataset, id_vars=["index"]).rename(
-            columns={"index": "Calories", "value": "Gross Agricultural Product ($B)"}
+            columns={"index": "year", "value": "Gross Agricultural Product ($B)"}
         )
         chart = (
             altair.Chart(dataset)
