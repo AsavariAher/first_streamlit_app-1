@@ -15,17 +15,17 @@ import altair
 from urllib.error import URLError
 
 @streamlit.cache
-def get_UN_data():
-    dataframe = pandas.read_csv("http://streamlit-demo-data.s3-us-west-2.amazonaws.com/agri.csv.gz")
-    return dataframe.set_index("Region")
+def get_data():
+    dataframe = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
+    return dataframe.set_index("Fruit Name")
 
 try:
-    dataframe = get_UN_data()
+    dataframe = get_data()
     countries = streamlit.multiselect(
-        "Choose countries", list(dataframe.index), ["China", "United States of America"]
+        "Choose a Fruit", list(dataframe.index), ["Avocado", "Grapes"]
     )
     if not countries:
-        streamlit.error("Please select at least one country.")
+        streamlit.error("Please select at least one fruit.")
     else:
         dataset = dataframe.loc[countries]
         dataset /= 1000000.0
