@@ -18,26 +18,26 @@ from urllib.error import URLError
 def get_UN_data():
     AWS_BUCKET_URL = "http://streamlit-demo-data.s3-us-west-2.amazonaws.com"
     dataframe = pd.read_csv(AWS_BUCKET_URL + "/agri.csv.gz")
-    return df.set_index("Region")
+    return dataframe.set_index("Region")
 
 try:
     dataframe = get_UN_data()
     countries = streamlit.multiselect(
-        "Choose countries", list(df.index), ["China", "United States of America"]
+        "Choose countries", list(dataframe.index), ["China", "United States of America"]
     )
     if not countries:
         streamlit.error("Please select at least one country.")
     else:
-        data = dataframe.loc[countries]
-        data /= 1000000.0
-        st.write("### Gross Agricultural Production ($B)", data.sort_index())
+        dataset = dataframe.loc[countries]
+        dataset /= 1000000.0
+        st.write("### Gross Agricultural Production ($B)", dataset.sort_index())
 
-        data = data.T.reset_index()
-        data = pd.melt(data, id_vars=["index"]).rename(
+        dataset = dataset.T.reset_index()
+        dataset = pd.melt(dataset, id_vars=["index"]).rename(
             columns={"index": "year", "value": "Gross Agricultural Product ($B)"}
         )
         chart = (
-            alt.Chart(data)
+            alt.Chart(dataset)
             .mark_area(opacity=0.3)
             .encode(
                 x="year:T",
