@@ -16,8 +16,7 @@ from urllib.error import URLError
 
 @streamlit.cache
 def get_UN_data():
-    AWS_BUCKET_URL = "http://streamlit-demo-data.s3-us-west-2.amazonaws.com"
-    dataframe = pandas.read_csv(AWS_BUCKET_URL + "/agri.csv.gz")
+    dataframe = pandas.read_csv("http://streamlit-demo-data.s3-us-west-2.amazonaws.com/agri.csv.gz")
     return dataframe.set_index("Region")
 
 try:
