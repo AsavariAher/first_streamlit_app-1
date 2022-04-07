@@ -30,7 +30,7 @@ try:
     else:
         dataset = dataframe.loc[countries]
         dataset /= 1000000.0
-        st.write("### Gross Agricultural Production ($B)", dataset.sort_index())
+        streamlit.write("### Gross Agricultural Production ($B)", dataset.sort_index())
 
         dataset = dataset.T.reset_index()
         dataset = pd.melt(dataset, id_vars=["index"]).rename(
@@ -45,7 +45,7 @@ try:
                 color="Region:N",
             )
         )
-        st.altair_chart(chart, use_container_width=True)
+        streamlit.altair_chart(chart, use_container_width=True)
 except URLError as e:
     streamlit.error(
         """
