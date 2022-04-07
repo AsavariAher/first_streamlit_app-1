@@ -9,7 +9,7 @@ streamlit.text('Hard-Boiled Free-Range Egg')
 
 
 
-import pandas as pd
+import pandas 
 import altair as alt
 
 from urllib.error import URLError
@@ -17,7 +17,7 @@ from urllib.error import URLError
 @streamlit.cache
 def get_UN_data():
     AWS_BUCKET_URL = "http://streamlit-demo-data.s3-us-west-2.amazonaws.com"
-    dataframe = pd.read_csv(AWS_BUCKET_URL + "/agri.csv.gz")
+    dataframe = pandas.read_csv(AWS_BUCKET_URL + "/agri.csv.gz")
     return dataframe.set_index("Region")
 
 try:
@@ -33,15 +33,15 @@ try:
         streamlit.write("### Gross Agricultural Production ($B)", dataset.sort_index())
 
         dataset = dataset.T.reset_index()
-        dataset = pd.melt(dataset, id_vars=["index"]).rename(
+        dataset = pandas.melt(dataset, id_vars=["index"]).rename(
             columns={"index": "year", "value": "Gross Agricultural Product ($B)"}
         )
         chart = (
-            alt.Chart(dataset)
+            altair.Chart(dataset)
             .mark_area(opacity=0.3)
             .encode(
                 x="year:T",
-                y=alt.Y("Gross Agricultural Product ($B):Q", stack=None),
+                y=altair.Y("Gross Agricultural Product ($B):Q", stack=None),
                 color="Region:N",
             )
         )
