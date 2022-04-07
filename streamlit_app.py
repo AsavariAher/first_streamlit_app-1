@@ -9,7 +9,7 @@ streamlit.text('Hard-Boiled Free-Range Egg')
 
 import pandas
 @st.cache
-dataframe = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/smew/country_code_to_currency_code.csv")
+df = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/smew/country_code_to_currency_code.csv")
 return df.set_index("Country")
 
 
