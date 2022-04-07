@@ -33,7 +33,7 @@ try:
 
         dataset = dataset.T.reset_index()
         dataset = pandas.melt(dataset, id_vars=["index"]).rename(
-            columns={"index": "year", "value": "Gross Agricultural Product ($B)"}
+            columns={"index": "Calories", "value": "Gross Agricultural Product ($B)"}
         )
         chart = (
             altair.Chart(dataset)
