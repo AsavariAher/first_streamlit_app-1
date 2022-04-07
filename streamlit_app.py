@@ -27,7 +27,7 @@ try:
     if not bowlingredients:
         streamlit.error("Please select at least one fruit.")
     else:
-        dataset = dataframe.loc[countries]
+        dataset = dataframe.loc[bowlingredients]
         dataset /= 1000000.0
         streamlit.write("### Fruits in BYOB", dataset.sort_index())
 
