@@ -33,13 +33,13 @@ try:
 
         dataset = dataset.T.reset_index()
         dataset = pandas.melt(dataset, id_vars=["index"]).rename(
-            columns={"index": "calories", "value": "Gross Agricultural Product ($B)"}
+            columns={"index": "Calories", "value": "Gross Agricultural Product ($B)"}
         )
         chart = (
             altair.Chart(dataset)
             .mark_area(opacity=0.3)
             .encode(
-                x="calories:T",
+                x="Calories:T",
                 y=altair.Y("Gross Agricultural Product ($B):Q", stack=None),
                 color="Calories:N",
             )
