@@ -21,26 +21,26 @@ def get_data():
 
 try:
     dataframe = get_data()
-    countries = streamlit.multiselect(
-        "Choose fruits ", list(dataframe.index), ["Apple", "Banana"]
+    bowlingredients = streamlit.multiselect(
+        "Build Your Own Fruit Bowl", list(dataframe.index), ["Apple", "Banana"]
     )
-    if not countries:
+    if not bowlingredients:
         streamlit.error("Please select at least one fruit.")
     else:
         dataset = dataframe.loc[countries]
         dataset /= 1000000.0
-        streamlit.write("### Gross Agricultural Production ($B)", dataset.sort_index())
+        streamlit.write("### Fruits in BYOB", dataset.sort_index())
 
         dataset = dataset.T.reset_index()
         dataset = pandas.melt(dataset, id_vars=["index"]).rename(
-            columns={"index": "Calories", "value": "Gross Agricultural Product ($B)"}
+            columns={"index": "Calories", "value": "Fruits in BYOB"}
         )
         chart = (
             altair.Chart(dataset)
             .mark_area(opacity=0.3)
             .encode(
                 x="Calories:T",
-                y=altair.Y("Gross Agricultural Product ($B):Q", stack=None),
+                y=altair.Y("BYOB:Q", stack=None),
                 color="Calories:N",
             )
         )
