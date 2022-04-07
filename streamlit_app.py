@@ -10,7 +10,7 @@ streamlit.text('Hard-Boiled Free-Range Egg')
 
 
 import pandas 
-import altair as alt
+import altair 
 
 from urllib.error import URLError
 
