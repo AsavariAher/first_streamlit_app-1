@@ -31,14 +31,5 @@ try:
             columns={"index": "Calories", "value": "Fruits in Smoothie"}
         )
 
-except URLError as e:
-    streamlit.error(
-        """
-        **Something went wrong.**
 
-        Connection error: %s
-    """
-        % e.reason
-    )
-    
 
