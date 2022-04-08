@@ -7,7 +7,7 @@ streamlit.text('Omega 3 & Blueberry Oatmeal')
 streamlit.text('Kale, Spinach & Rocket Smoothie')
 streamlit.text('Hard-Boiled Free-Range Egg')
 
-
+streamlit.header('Build Your Own Fruit Smoothie')
 
 import pandas 
 import altair 
@@ -22,7 +22,7 @@ def get_data():
 try:
     dataframe = get_data()
     bowlingredients = streamlit.multiselect(
-        "Build Your Own Fruit Bowl", list(dataframe.index), ["Apple", "Banana"]
+        "Build Your Own Fruit Smoothie", list(dataframe.index), ["Apple", "Banana"]
     )
     if not bowlingredients:
         streamlit.error("Please select at least one fruit.")
@@ -35,16 +35,7 @@ try:
         dataset = pandas.melt(dataset, id_vars=["index"]).rename(
             columns={"index": "Calories", "value": "Fruits in BYOB"}
         )
-        chart = (
-            altair.Chart(dataset)
-            .mark_area(opacity=0.3)
-            .encode(
-                x="Calories:T",
-                y=altair.Y("BYOB:Q", stack=None),
-                color="Calories:N",
-            )
-        )
-        streamlit.altair_chart(chart, use_container_width=True)
+
 except URLError as e:
     streamlit.error(
         """
