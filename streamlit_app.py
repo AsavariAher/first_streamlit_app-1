@@ -10,8 +10,6 @@ streamlit.text('Hard-Boiled Free-Range Egg')
 streamlit.header('Build Your Own Fruit Smoothie')
 
 import pandas 
-import altair 
-
 from urllib.error import URLError
 
 @streamlit.cache
@@ -21,25 +19,24 @@ def get_data():
 
 try:
     dataframe = get_data()
-    bowlingredients = streamlit.multiselect(
-        "Build Your Own Fruit Bowl", list(dataframe.index), ["Apple", "Banana"]
+    fruits_selected = streamlit.multiselect(
+        "Select some fruits for your smoothie", list(dataframe.index), ["Strawberries", "Banana"]
     )
-    if not bowlingredients:
+    if not fruits_selected:
         streamlit.error("Please select at least one fruit.")
     else:
-        dataset = dataframe.loc[bowlingredients]
-        #dataset /= 1000000.0
-        streamlit.write("### Fruits in BYOB", dataset.sort_index())
+        dataset = dataframe.loc[fruits_selected]
+        streamlit.write("### Fruits", dataset.sort_index())
 
         dataset = dataset.T.reset_index()
         dataset = pandas.melt(dataset, id_vars=["index"]).rename(
-            columns={"index": "Calories", "value": "Fruits in BYOB"}
+            columns={"index": "Calories", "value": "Fruits"}
         )
 
 except URLError as e:
     streamlit.error(
         """
-        **This demo requires internet access.**
+        **Something went wrong.**
 
         Connection error: %s
     """
