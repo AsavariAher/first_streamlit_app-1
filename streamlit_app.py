@@ -28,7 +28,7 @@ try:
         streamlit.error("Please select at least one fruit.")
     else:
         dataset = dataframe.loc[bowlingredients]
-        dataset /= 1000000.0
+        #dataset /= 1000000.0
         streamlit.write("### Fruits in BYOB", dataset.sort_index())
 
         dataset = dataset.T.reset_index()
