@@ -28,7 +28,7 @@ try:
         dataset = dataframe.loc[fruits_selected]
         streamlit.write("### Fruits You've Selected:", dataset.sort_index())
 
- except URLError as e:
+except URLError as e:
     streamlit.error(
         """
         **Something went wrong.**
