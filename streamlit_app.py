@@ -30,7 +30,7 @@ try:
 
         dataset = dataset.T.reset_index()
         dataset = pandas.melt(dataset, id_vars=["index"]).rename(
-            columns={"index": "Calories", "value": "Fruits"}
+            columns={"index": "Calories", "value": "What?"}
         )
 
 except URLError as e:
