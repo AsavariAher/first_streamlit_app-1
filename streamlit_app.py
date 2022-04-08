@@ -31,5 +31,5 @@ try:
             columns={"index": "Calories", "value": "Fruits in Smoothie"}
         )
 
-
+        )
 
