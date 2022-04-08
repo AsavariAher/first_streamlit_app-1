@@ -26,7 +26,7 @@ try:
         streamlit.error("Please select at least one fruit.")
     else:
         dataset = dataframe.loc[fruits_selected]
-        streamlit.write("### Fruits", dataset.sort_index())
+        streamlit.write("### Fruits Selected:", dataset.sort_index())
 
         dataset = dataset.T.reset_index()
         dataset = pandas.melt(dataset, id_vars=["index"]).rename(
