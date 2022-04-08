@@ -23,7 +23,7 @@ try:
         "Select some fruits for your smoothie", list(dataframe.index), ["Strawberries", "Banana"]
     )
     if not fruits_selected:
-        streamlit.error("Please select at least one fruit.")
+        streamlit.error("It's not really a fruit smoothie, if you don't include a fruit!")
     else:
         dataset = dataframe.loc[fruits_selected]
         streamlit.write("### Fruits Selected:", dataset.sort_index())
