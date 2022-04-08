@@ -15,14 +15,10 @@ def get_data():
     dataframe = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
     return dataframe.set_index("Fruit")
 
-try:
     dataframe = get_data()
     smoothiefruitschosen = streamlit.multiselect(
         "Select Fruits for Your Smoothie", list(dataframe.index), ["Apple", "Banana"]
     )
-    if not bowlingredients:
-        streamlit.error("It can't be a fruit smoothie if you don't pick a fruit.")
-    else:
         dataset = dataframe.loc[smoothiefruitschosen]
         streamlit.write("### Fruits in Smoothie", dataset.sort_index())
 
