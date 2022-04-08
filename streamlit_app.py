@@ -29,9 +29,9 @@ try:
         streamlit.write("### Fruits Selected:", dataset.sort_index())
 
         dataset = dataset.T.reset_index()
-        dataset = pandas.melt(dataset, id_vars=["index"]).rename(
-            columns={"index": "Calories", "value": "What?"}
-        )
+        #dataset = pandas.melt(dataset, id_vars=["index"]).rename(
+        #    columns={"index": "Calories", "value": "What?"}
+        #)
 
 except URLError as e:
     streamlit.error(
