@@ -26,12 +26,9 @@ try:
         streamlit.error("It's not really a fruit smoothie, if you don't include a fruit!")
     else:
         dataset = dataframe.loc[fruits_selected]
-        streamlit.write("### Fruits Selected:", dataset.sort_index())
+        streamlit.write("### Fruits You've Selected:", dataset.sort_index())
 
-        #dataset = dataset.T.reset_index()
- 
-
-except URLError as e:
+ except URLError as e:
     streamlit.error(
         """
         **Something went wrong.**
