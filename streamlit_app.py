@@ -28,10 +28,8 @@ try:
         dataset = dataframe.loc[fruits_selected]
         streamlit.write("### Fruits Selected:", dataset.sort_index())
 
-        dataset = dataset.T.reset_index()
-        #dataset = pandas.melt(dataset, id_vars=["index"]).rename(
-        #    columns={"index": "Calories", "value": "What?"}
-        #)
+        #dataset = dataset.T.reset_index()
+ 
 
 except URLError as e:
     streamlit.error(
