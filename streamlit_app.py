@@ -34,10 +34,25 @@ def get_fruityvice_data(fruit_choice):
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
     return fruityvice_normalized
 
-fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
-d1= get_fruityvice_data(fruit_choice)
-streamlit.write('The user entered', fruit_choice)
-streamlit.dataframe(d1)
+try:
+   dataframe = get_fruityvice_data()
+   fruit_choice = streamlit.text_input('What fruit would you like information about?')
+    if not fruits_choice:
+        streamlit.error("Please select a fruit to get information.")
+    else:
+        streamlit.dataframe(get_fruityvice_data(fruit_choice))
+
+except URLError as e:
+    streamlit.error(
+        """
+        **Something went wrong.**
+        Connection error: %s
+    """
+        % e.reason
+    )
+
+
+
 
 # don't run anything past here while we troubleshoot
 streamlit.stop()
