@@ -26,7 +26,7 @@ streamlit.dataframe(fruits_to_show)
 
 #New Section to display fruityvice api response
 streamlit.header('Fruityvice Fruit Advice!')
-
+from urllib.error import URLError
 #Fruityvice data function - repeats each time user hits enter in entry box
 @streamlit.cache
 def get_fruityvice_data(fruit_choice):
