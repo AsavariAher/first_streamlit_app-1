@@ -21,7 +21,9 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 #display the table on the page
 streamlit.dataframe(fruits_to_show)
 
+#New Section to display fruityvice api response
 import requests
-
+response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+print(response)
 
 
