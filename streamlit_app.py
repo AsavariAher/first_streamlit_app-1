@@ -32,11 +32,11 @@ streamlit.header('Fruityvice Fruit Advice!')
 def get_fruityvice_data(fruit_choice):
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-    streamlit.write('The user entered', fruit_choice)
     return fruityvice_normalized
 
 fruit_choice = streamlit.text_input('What fruit would you like information about?')
 d1= get_fruityvice_data(fruit_choice)
+streamlit.write('The user entered', fruit_choice)
 streamlit.dataframe(d1)
 
 # don't run anything past here while we troubleshoot
