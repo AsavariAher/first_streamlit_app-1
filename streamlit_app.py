@@ -49,7 +49,12 @@ if st.button('Say hello'):
      st.write('Why hello there')
  else:
      st.write('Goodbye')   
+        
+# don't run anything past here while we troubleshoot
+streamlit.stop()
 
+        
+        
 #import snowflake.connector
 def connect_to_snowflake():
     return snowflake.connector.connect(**streamlit.secrets["snowflake"])
@@ -66,8 +71,7 @@ my_data_rows = get_fruit_load_list()
 streamlit.header("The fruit load list contains:")
 streamlit.dataframe(my_data_rows)
 
-# don't run anything past here while we troubleshoot
-streamlit.stop()
+
 
 def insert_row_snowflake(new_fruit):
     with my_cnx.cursor() as my_cursor:
