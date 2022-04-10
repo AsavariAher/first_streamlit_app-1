@@ -43,8 +43,12 @@ try:
 
 except URLError as e:
     streamlit.error()          
-    
-   
+ 
+# Add a button to load the fruit 
+if st.button('Say hello'):
+     st.write('Why hello there')
+ else:
+     st.write('Goodbye')   
 #import snowflake.connector
 def connect_to_snowflake():
     return snowflake.connector.connect(**streamlit.secrets["snowflake"])
