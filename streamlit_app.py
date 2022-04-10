@@ -47,7 +47,7 @@ except URLError as e:
    
 #import snowflake.connector
 def connect_to_snowflake():
-    return snowflake.connector.connect(**st.secrets["snowflake"])
+    return snowflake.connector.connect(**streamlit.secrets["snowflake"])
 
 connect_to_snowflake()
 
