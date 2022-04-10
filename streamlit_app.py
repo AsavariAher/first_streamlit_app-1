@@ -54,7 +54,7 @@ my_cnx = connect_to_snowflake()
 def get_fruit_load_list():
     with my_cnx.cursor() as my_cursor:
          my_cursor.execute("select * from fruit_load_list")
-         return cur.fetchall()
+         return my_cursor.fetchall()
 
 #Run this when page loads
 my_data_rows = get_fruit_load_list()
