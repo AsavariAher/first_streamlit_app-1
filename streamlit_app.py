@@ -44,32 +44,32 @@ try:
 except URLError as e:
     streamlit.error()          
  
-# Add a button to load the fruit 
-if streamlit.button('Say hello'):
-     streamlit.write('Why hello there')
-else:
-     streamlit.write('Goodbye')   
-        
-# don't run anything past here while we troubleshoot
-streamlit.stop()
-
-        
-        
 #import snowflake.connector
 def connect_to_snowflake():
     return snowflake.connector.connect(**streamlit.secrets["snowflake"])
-
-my_cnx = connect_to_snowflake()
 
 def get_fruit_load_list():
     with my_cnx.cursor() as my_cursor:
          my_cursor.execute("select * from fruit_load_list")
          return my_cursor.fetchall()
 
-#Run this when page loads
-my_data_rows = get_fruit_load_list()
-streamlit.header("The fruit load list contains:")
-streamlit.dataframe(my_data_rows)
+
+# Add a button to load the fruit 
+if streamlit.button('Get Fruit List'):
+    my_cnx = connect_to_snowflake()
+    my_data_rows = get_fruit_load_list()
+    streamlit.header("The fruit load list contains:")
+    streamlit.dataframe(my_data_rows)
+else:
+     streamlit.write('Goodbye')   
+        
+# don't run anything past here while we troubleshoot
+streamlit.stop()
+
+   
+        
+
+
 
 
 
