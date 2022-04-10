@@ -38,11 +38,7 @@ try:
 
 except URLError as e:
     streamlit.error(
-        """
-        **Something went wrong.**
-        Connection error: %s
-    """
-        % e.reason
+              % e.reason
     )
 
 # don't run anything past here while we troubleshoot
