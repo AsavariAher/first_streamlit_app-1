@@ -45,10 +45,10 @@ except URLError as e:
     streamlit.error()          
  
 # Add a button to load the fruit 
-if st.button('Say hello'):
-     st.write('Why hello there')
+if streamlit.button('Say hello'):
+     streamlit.write('Why hello there')
 else:
-     st.write('Goodbye')   
+     streamlit.write('Goodbye')   
         
 # don't run anything past here while we troubleshoot
 streamlit.stop()
