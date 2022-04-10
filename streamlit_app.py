@@ -64,10 +64,9 @@ streamlit.header("Fruit Load List")
 if streamlit.button('Get Fruit Load List'):
     my_cnx = connect_to_snowflake()
     my_data_rows = get_fruit_load_list()
-
     streamlit.dataframe(my_data_rows)
-else:
-     streamlit.write()   
+#else:
+     #streamlit.write()   
         
 # don't run anything past here while we troubleshoot
 streamlit.stop()
